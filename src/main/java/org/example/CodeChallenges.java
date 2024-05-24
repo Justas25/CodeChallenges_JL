@@ -5,15 +5,17 @@ import java.util.*;
 
 
 public class CodeChallenges {
+
     public static void main(String[] args) {
 
         System.out.printf("<<<---------------------------------->>>\n");
         System.out.printf("<<<------ CODE CHALLENGE TASKS ------>>>\n");
         System.out.printf("<<<---------------------------------->>>\n");
+        //System.out.println("Number of iterations took: "+kaprekar(45));
+
+        System.out.println("result:"+FivesAndThrees.only5and3(6));
 
 
-
-        System.out.println(isFactorial(125));
 
     }
 
@@ -410,6 +412,61 @@ public class CodeChallenges {
         }
 
     }
+
+    //#18RECURSION
+    //Kaprekar constant, or 6174, is a constant that arises when we take a 4-digit integer,
+    // form the largest and smallest numbers from its digits, and then subtract these two numbers.
+    // Continuing with this process of forming and subtracting, we will always arrive at the number 6174.
+    /*
+    0. Take any four-digit number, using at least two different digits (leading zeros are allowed).
+    1. Arrange the digits in descending and then in ascending order to get two four-digit numbers
+    , adding leading zeros if necessary.
+    2. Subtract the smaller number from the bigger number.
+    3. Go back to step 2 and repeat.
+    //Returns the number of times it will take to get from a number to 6174
+     */
+    public static int kaprekar(int num) {
+        return kaprekarHelper(num,1);
+    }
+
+    private static int kaprekarHelper(int num, int iteration) {
+        int max_number = sortDigits(num, Collections.reverseOrder());
+        while (max_number<1000) max_number*=10;
+        int min_number = sortDigits(num, Comparator.naturalOrder());
+        System.out.println("Max: "+max_number);
+        System.out.println("Min: "+min_number);
+        int newNumber = max_number-min_number;
+        System.out.println("New number: "+newNumber);
+        if (newNumber==6174) return iteration;
+        else return kaprekarHelper(newNumber, iteration+1);
+    }
+
+
+    //sorts numbers digits and returns new number
+    public static int sortDigits(int number, Comparator<Character> comparator) {
+        // Convert the integer to a string
+        String numberStr = Integer.toString(number);
+
+        // Convert the string to a character array
+        Character[] digits = new Character[numberStr.length()];
+        for (int i = 0; i < numberStr.length(); i++) {
+            digits[i] = numberStr.charAt(i);
+        }
+
+        // Sort the character array in reverse order
+        Arrays.sort(digits, comparator);
+
+        // Convert the sorted character array back to a string
+        StringBuilder sortedStr = new StringBuilder(digits.length);
+        for (char digit : digits) {
+            sortedStr.append(digit);
+        }
+
+        // Convert the string back to an integer
+        return Integer.parseInt(sortedStr.toString());
+    }
+
+    //#19
 
 
 }
