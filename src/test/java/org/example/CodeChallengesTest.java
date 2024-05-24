@@ -236,4 +236,15 @@ class CodeChallengesTest {
     assertArrayEquals(resVector[7],CodeChallenges.flatten(objVector[7]));
     }
 
+    @Test
+    void kaprekarTEst(){
+        assertEquals(5, CodeChallenges.kaprekar(1112));
+        assertEquals(7, CodeChallenges.kaprekar(456));
+        assertEquals(3, CodeChallenges.kaprekar(76));
+        assertEquals(5, CodeChallenges.kaprekar(100));
+        assertEquals(4, CodeChallenges.kaprekar(101));
+    }
+
+
+
 }
