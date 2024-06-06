@@ -181,6 +181,30 @@ class CodeChallengesTest {
         assertEquals(false,CodeChallenges.isPalindrome("abacus"));
         assertEquals(true,CodeChallenges.isPalindrome("rotator"));
         assertEquals(false,CodeChallenges.isPalindrome("scholars"));
+        assertEquals(true,CodeChallenges.isPalindrome("rotaator"));
+        assertEquals(false,CodeChallenges.isPalindrome("Not a palindrome"));
+        assertEquals(true,CodeChallenges.isPalindrome("A man, a plan, a cat, a ham, a yak, a yam, a hat, a canal-Panama!"));
+        assertEquals(true,CodeChallenges.isPalindrome("Go hang a salami, I'm a lasagna hog!"));
+        assertEquals(false,CodeChallenges.isPalindrome("This phrase is really this!"));
+        assertEquals(true,CodeChallenges.isPalindrome("Red rum, sir, is murder."));
+        assertEquals(true,CodeChallenges.isPalindrome("Big step on no pets, Gib"));
+        assertEquals(false,CodeChallenges.isPalindrome("One true fortune, but no!"));
+        assertEquals(true,CodeChallenges.isPalindrome("Don't nod."));
+        assertEquals(true,CodeChallenges.isPalindrome("I did, did I?"));
+        assertEquals(true,CodeChallenges.isPalindrome("My gym."));
+        assertEquals(true,CodeChallenges.isPalindrome("Top spot."));
+        assertEquals(true,CodeChallenges.isPalindrome("My gym."));
+        assertEquals(true,CodeChallenges.isPalindrome("Was it a cat I saw?"));
+        assertEquals(true,CodeChallenges.isPalindrome("No lemon, no melon."));
+        assertEquals(true,CodeChallenges.isPalindrome("Eva, can I see bees in a cave?"));
+        assertEquals(false,CodeChallenges.isPalindrome("Can I be iconic?"));
+        assertEquals(true,CodeChallenges.isPalindrome("Madam I'm Adam."));
+        assertEquals(false,CodeChallenges.isPalindrome("The man on the moon are them."));
+        assertEquals(true,CodeChallenges.isPalindrome("Sit on a potato pan, Otis."));
+        assertEquals(false,CodeChallenges.isPalindrome("Truly, a classic cadillac!"));
+        assertEquals(true,CodeChallenges.isPalindrome("Able was I, ere I saw Elba."));
+        assertEquals(true,CodeChallenges.isPalindrome("Step on no pets!"));
+
 
     }
 
@@ -236,7 +260,7 @@ class CodeChallengesTest {
     assertArrayEquals(resVector[7],CodeChallenges.flatten(objVector[7]));
     }
 
-    @Test
+    @Test //#18
     void kaprekarTEst(){
         assertEquals(5, CodeChallenges.kaprekar(1112));
         assertEquals(7, CodeChallenges.kaprekar(456));
@@ -244,6 +268,34 @@ class CodeChallengesTest {
         assertEquals(5, CodeChallenges.kaprekar(100));
         assertEquals(4, CodeChallenges.kaprekar(101));
     }
+
+    @Test //#19
+    void multiplyBy11Test() {
+        assertEquals("121", CodeChallenges.multiplyBy11("11"));
+        assertEquals("2127774", CodeChallenges.multiplyBy11("193434"));
+        assertEquals("1222222221", CodeChallenges.multiplyBy11("111111111"));
+        assertEquals("13345200220", CodeChallenges.multiplyBy11("1213200020"));
+        assertEquals("13389177351", CodeChallenges.multiplyBy11("1217197941"));
+        assertEquals("135802468864197531", CodeChallenges.multiplyBy11("12345678987654321"));
+        assertEquals("104211199012633638785785900953", CodeChallenges.multiplyBy11("9473745364784876253253263723"));
+        assertEquals("635783230909890532314447724963988510927543384582233109612769192056405578275705998540420364959788789519053403744017934787457261267552542543285435656175662404183030348849574039872257773944086571190888786847074756786564518203896815761793024453765630446693432922890436114349336495211031758681811992188070207300537435692693433611568697667003564013046540716780092199075001026112195705800164620258745160401995730248179648572857445719902139747183174704337379031002152460961006074198559739469164047819604029384", CodeChallenges.multiplyBy11("57798475537262775664949793178544410084322125871112100873888108368764143479609636230947305905435344501732127613092539526132478297050231140298675968743242036743911849895415821806568888540371506471898980622461341526051319836717892341981184041251420949699402992990039646759030590473730159880164726562551837027321585062972130328324427060636687637549685519707281109006818275101108700527287692750795014581999611840743604415714313247263830886107561336757943548272922950996455097654414521769924004347236729944"));
+    }
+
+    @Test //#20
+    void multiplyBy11RecursionTest() {
+        assertEquals("121", CodeChallenges.multiplyBy11re("11"));
+        assertEquals("2127774", CodeChallenges.multiplyBy11re("193434"));
+        assertEquals("1222222221", CodeChallenges.multiplyBy11re("111111111"));
+        assertEquals("13345200220", CodeChallenges.multiplyBy11re("1213200020"));
+        assertEquals("13389177351", CodeChallenges.multiplyBy11re("1217197941"));
+        assertEquals("135802468864197531", CodeChallenges.multiplyBy11re("12345678987654321"));
+        assertEquals("104211199012633638785785900953", CodeChallenges.multiplyBy11re("9473745364784876253253263723"));
+        assertEquals("635783230909890532314447724963988510927543384582233109612769192056405578275705998540420364959788789519053403744017934787457261267552542543285435656175662404183030348849574039872257773944086571190888786847074756786564518203896815761793024453765630446693432922890436114349336495211031758681811992188070207300537435692693433611568697667003564013046540716780092199075001026112195705800164620258745160401995730248179648572857445719902139747183174704337379031002152460961006074198559739469164047819604029384", CodeChallenges.multiplyBy11("57798475537262775664949793178544410084322125871112100873888108368764143479609636230947305905435344501732127613092539526132478297050231140298675968743242036743911849895415821806568888540371506471898980622461341526051319836717892341981184041251420949699402992990039646759030590473730159880164726562551837027321585062972130328324427060636687637549685519707281109006818275101108700527287692750795014581999611840743604415714313247263830886107561336757943548272922950996455097654414521769924004347236729944"));
+    }
+
+
+
+
 
 
 

@@ -1,6 +1,7 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.*;
 
 
@@ -14,7 +15,7 @@ public class CodeChallenges {
         //System.out.println("Number of iterations took: "+kaprekar(45));
 
         System.out.println("result:"+FivesAndThrees.only5and3(6));
-
+        System.out.println(isPalindrome("Go hang a salami, I'm a lasagna hog!"));
 
 
     }
@@ -366,12 +367,16 @@ public class CodeChallenges {
 
 
     //#15 RECURSION
-    //palindrome is a word that reads the same backwards as forwards
-    public static boolean isPalindrome(String word) {
+    //palindrome is a word or phrase that reads the same backwards as forwards
+
+    public static boolean isPalindrome(String sentence) {
+        String word = sentence.replaceAll("\\W","").toLowerCase();
         if (word.length()<=1) return true;
         if (word.charAt(0)== word.charAt(word.length()-1)) return isPalindrome(word.substring(1,word.length()-1));
         else return false;
     }
+
+
 
     //16 RECURSION
     //A number is called happy if it leads to 1 after a sequence of steps where in each step number is
@@ -466,7 +471,71 @@ public class CodeChallenges {
         return Integer.parseInt(sortedStr.toString());
     }
 
-    //#19
+    //#19Loop version
+    /*
+    Given a positive number as a string, multiply the number by 11 and also return it as a string.
+    !!!You are NOT ALLOWED to simply cast the numeric string into an integer!!!
+     */
+    public static String multiplyBy11(String n) {
+        StringBuilder newDigit = new StringBuilder(n.substring(n.length()-1));
+        boolean surplus = false;
+        for (int i = n.length()-1; i > 0; i--) {
+            int number1 = Integer.parseInt(n.substring(i,i+1));
+            int number2 = Integer.parseInt(n.substring(i-1,i));
+            int sum = number1 + number2;
+            if (surplus) {
+                sum++;
+                surplus=false;
+            }
+            if (sum<=9){
+                newDigit.append(Integer.toString(sum));
+            } else {
+                newDigit.append(sum%10);
+                surplus=true;
+            }
+        }
+        int lastDigit;
+        if (surplus) lastDigit = Integer.parseInt(n.substring(0,1))+1;
+        else lastDigit = Integer.parseInt(n.substring(0,1));
+        if (lastDigit>9) {
+            newDigit.append(lastDigit%10);
+            newDigit.append(lastDigit/10);
+        } else newDigit.append(lastDigit);
+        newDigit = newDigit.reverse();
+        System.out.println(newDigit);
+        return newDigit.toString();
+    }
+
+    //#20Recursion version
+    /*
+    Given a positive number as a string, multiply the number by 11 and also return it as a string.
+    !!!You are NOT ALLOWED to simply cast the numeric string into an integer!!!
+     */
+    public static String multiplyBy11re(String n) {
+        return multiplyBy11Helper(n,false)+n.substring(n.length()-1);
+    }
+
+    private static String multiplyBy11Helper(String n,boolean carry){
+        int digit;
+        if (n.length()<2) {
+            char number = n.toCharArray()[0];
+            digit = number-'0';
+            if (carry) return Integer.toString(digit+1);
+            else return n;
+        }
+        digit = Integer.parseInt(n.substring(n.length()-1));
+        int newdigit=digit+Integer.parseInt(n.substring(n.length()-2,n.length()-1));
+        if (carry) {
+            newdigit+=1;
+            carry=false;
+        }
+        if (newdigit>9) {
+            carry=true;
+        }
+        return multiplyBy11Helper(n.substring(0,n.length()-1),carry)+Integer.toString(newdigit%10);
+    }
+
+
 
 
 }
